@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Knockoff version of the Enigma machine that is really just a fancy Caesar cipher."
+    />
+    <title>Caesar's Enigma</title>
+    <style>
+      /* Define CSS variables */
+      :root {
+        letter-spacing: 1px;
+        font-size: 25px;
+
+        --white: #ffffff;
+
+        --primary_darkest: #0a105c;
+        --primary_dark: #131a77;
+        --primary: #1f2793;
+        --primary_light: #3a42a5;
+        --primary_lighter: #575eb4;
+
+        --secondary_darkest: #00504d;
+        --secondary_dark: #026965;
+        --secondary: #0a817c;
+        --secondary_light: #23908c;
+        --secondary_lighter: #40a09c;
+
+        --accent_darkest: #330559;
+        --accent_dark: #440a74;
+        --accent: #58148f;
+        --accent_light: #6d2fa0;
+        --accent_lighter: #834eaf;
+
+        scroll-behavior: smooth;
+      }
+
+      /* UI Styles */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--primary_darkest);
+      }
+
+      .container {
+        max-width: 75%;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: var(--secondary_darkest);
+        color: var(--white);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .description {
+        text-align: center;
+        margin: 10px auto 30px;
+        width: 90%;
+      }
+
+      .inputWrapper {
+        margin: 10px;
+      }
+
+      textarea {
+        display: flex;
+        width: 98%;
+        padding: 10px 1%;
+        margin: 10px auto;
+        border: 1px solid var(--secondary_darkest);
+        background-color: var(--secondary);
+        color: var(--white);
+        border-radius: 6px;
+        resize: none;
+      }
+
+      .options {
+        display: flex;
+        align-items: center;
+        margin: 10px auto;
+      }
+
+      label {
+        margin-right: 10px;
+      }
+
+      input[type="number"] {
+        width: 100px;
+        padding: 5px;
+        margin-right: 10px;
+        border: 1px solid var(--secondary_darkest);
+        background-color: var(--secondary);
+        color: var(--white);
+        border-radius: 5px;
+      }
+
+      button {
+        padding: 8px 15px;
+        margin: 0 3px;
+        border: none;
+        border-radius: 5px;
+        background-color: var(--accent_darkest);
+        color: var(--white);
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: var(--accent);
+      }
+
+      #output {
+        margin: 10px auto;
+        padding: 10px;
+        border: 1px solid var(--secondary_darkest);
+        background-color: var(--secondary);
+        color: var(--white);
+        border-radius: 6px;
+        min-height: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Main Content Container -->
+    <div class="container">
+      <h1>Caesar's Enigma</h1>
+      <p class="description">
+        Welcome to Caesar's Enigma, the fortress of secrecy for the modern age.
+        Whether you're sending love letters or sharing top-secret plans, our app
+        ensures your messages remain shrouded in mystery... make sure only those
+        you are talking to use the same encryption code!
+      </p>
+      <div class="options">
+        <!-- Encryption Key Input -->
+        <label for="key">Encryption Key:</label>
+        <input type="number" name="key" id="key" />
+        <!-- Encrypt and Decrypt Buttons -->
+        <button id="encrypt">Encrypt</button>
+        <button id="decrypt">Decrypt</button>
+      </div>
+      <div class="inputWrapper">
+        <h3>Input</h3>
+        <!-- User Input Section -->
+        <textarea
+          name="inputArea"
+          id="textInput"
+          cols="30"
+          rows="10"
+        ></textarea>
+        <!-- Function Output Section -->
+        <h3>Output</h3>
+        <p id="output"></p>
+      </div>
+    </div>
+  </body>
+  <script>
+    " ";
+    // Array of alphabets for encryption/decryption
+    const alphabets = [
+      "c2DeR8Cj5;sX~tlm\+,)4}rJI1@Bi[&6^y0`dN.!$-Tnb?UZ7W#%K/a:GuYE]H3A|f 9*=%(VqohQO{PMpvLFkwgSxz",
+      "jBHQvLEcgFmqT RwMdysxn`[PUzu/rbfhG+*%@#}98Y:6t,J!eoAK)kXCOS\p?7IWilDV5N-^]~;Z{$0%=(&23|.41a",
+      "C^{3|W%ub=`d.!iR&8e)5w@v}?-Q+$7~6GtVn[Ma*40\Yk/m19I]U,;cH:XhzO(ZyJ2xKSo%q fr#NFjsgDpPlAEBLT",
+      "m|edysj^SRcrY*7%iM8xq+AWu\=P{0N`:Of31GT}/@hD% Zo;gU.w]Etp?IV5z4)vnJC[$Qb2X(kFl~HaKB,L!9-6#&",
+      "TiaK[Q$b@7jsuqoVg]Yk0(,?GJ\.MftHC5p/-FD~h61x3NZ:%9 }zB=PXE^4r!%LlwA;#+2y8&|mUcnW*v`dORSe{)I",
+    ];
+
+    /**
+     * Transforms a message based on the key and direction
+     * @param {String} message - Message to be encrypted or decrypted
+     * @param {Number} key - Encryption number
+     * @param {"encrypt" | "decrypt"} direction - If the message is to be encrypted or decrypted
+     */
+    function transformString(message = "", key = 0, direction = "") {
+      let transformed = "";
+      for (let i = 0; i < message.length; i++) {
+        // Determine which alphabet to use based on the position in the message
+        const alphabetIndex = i % 5;
+        const alphabet = alphabets[alphabetIndex];
+        // Check if the character is in the current alphabet
+        if (alphabet.includes(message[i])) {
+          // Find the position of the character in the alphabet
+          let pos = alphabet.indexOf(message[i]);
+          let newPos;
+          // Encrypt or decrypt based on the direction
+          if (direction === "encrypt") {
+            newPos = (pos + parseInt(key)) % alphabet.length;
+          } else if (direction === "decrypt") {
+            newPos = (pos - parseInt(key) + alphabet.length) % alphabet.length;
+          }
+          // Append the transformed character to the result
+          transformed += alphabet[newPos];
+        } else {
+          // If the character is not encryptable just append the value unencrypted
+          transformed += message[i];
+        }
+      }
+      return transformed;
+    }
+
+    // Function to handle encryption
+    function encrypter() {
+      const key = document.getElementById("key").value;
+      const message = document.getElementById("textInput").value;
+      // Encrypt the message and display the result
+      const encrypted = transformString(message, key, "encrypt");
+      document.getElementById("output").innerText = encrypted;
+    }
+
+    // Function to handle decryption
+    function decrypter() {
+      const key = document.getElementById("key").value;
+      const message = document.getElementById("textInput").value;
+      // Decrypt the message and display the result
+      const decrypted = transformString(message, key, "decrypt");
+      document.getElementById("output").innerText = decrypted;
+    }
+
+    // Event listeners for the encrypt and decrypt buttons
+    document.getElementById("encrypt").addEventListener("click", encrypter);
+    document.getElementById("decrypt").addEventListener("click", decrypter);
+  </script>
+</html>
