@@ -11,59 +11,71 @@
       name="description"
       content="Knockoff version of the Enigma machine that is really just a fancy Caesar cipher."
     />
-    <title>Caesar's Enigma</title>
+    <title>Enigma</title>
+    <!-- Google font INTER -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
     <style>
       /* Define CSS variables */
       :root {
         letter-spacing: 1px;
         font-size: 25px;
-
         --white: #ffffff;
 
-        --primary_darkest: #0a105c;
-        --primary_dark: #131a77;
-        --primary: #1f2793;
-        --primary_light: #3a42a5;
-        --primary_lighter: #575eb4;
+        /* Primary – Deep Electric Purple */
+        --primary_darkest: #1a103d;
+        --primary_dark: #2b1f6c;
+        --primary: #3d2d9c;
+        --primary_light: #5a4bc0;
+        --primary_lighter: #7b6fe0;
 
-        --secondary_darkest: #00504d;
-        --secondary_dark: #026965;
-        --secondary: #0a817c;
-        --secondary_light: #23908c;
-        --secondary_lighter: #40a09c;
+        /* Secondary – Cool Cyan/Teal Blend */
+        --secondary_darkest: #003b46;
+        --secondary_dark: #005b66;
+        --secondary: #007d87;
+        --secondary_light: #26a6af;
+        --secondary_lighter: #56c7ce;
 
-        --accent_darkest: #330559;
-        --accent_dark: #440a74;
-        --accent: #58148f;
-        --accent_light: #6d2fa0;
-        --accent_lighter: #834eaf;
+        /* Accent – Vibrant Magenta-Fuchsia Range */
+        --accent_darkest: #500f58;
+        --accent_dark: #6b1671;
+        --accent: #851e8b;
+        --accent_light: #a33eaa;
+        --accent_lighter: #c56bc6;
 
         scroll-behavior: smooth;
       }
 
       /* UI Styles */
       body {
-        font-family: Arial, sans-serif;
+        font-family: "Inter", sans-serif;
         margin: 0;
         padding: 0;
         background-color: var(--primary_darkest);
       }
 
       .container {
-        max-width: 75%;
-        margin: 20px auto;
-        padding: 20px;
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 30px;
         background-color: var(--secondary_darkest);
-        color: var(--white);
-        border-radius: 8px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+        border-radius: 6px;      }
 
       h1 {
-        text-align: center;
-        margin-bottom: 20px;
+        font-size: 2.5rem;
+        color: var(--accent_lighter);
+      }
+
+      h3 {
+        font-size: 1.4rem;
+        color: var(--primary_lighter);
+      }
+
+      .container hr {
+        width: 100%;
       }
 
       .description {
@@ -90,8 +102,9 @@
 
       .options {
         display: flex;
-        align-items: center;
-        margin: 10px auto;
+        justify-content: center;
+        gap: 12px;
+        margin: 20px auto;
       }
 
       label {
@@ -116,37 +129,65 @@
         background-color: var(--accent_darkest);
         color: var(--white);
         cursor: pointer;
+        transition: background-color 0.2s ease, transform 0.1s ease;
       }
 
       button:hover {
         background-color: var(--accent);
+        transform: scale(1.03);
       }
 
+      button:active {
+        transform: scale(0.97);
+      }
+
+      textarea {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 16px;
+        line-height: 1.5;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+      }
+
+      textarea,
       #output {
         margin: 10px auto;
         padding: 10px;
-        border: 1px solid var(--secondary_darkest);
-        background-color: var(--secondary);
         color: var(--white);
         border-radius: 6px;
         min-height: 50px;
+        background-color: var(--secondary_light);
+        border: 1px solid var(--primary_lighter);
+      }
+
+      .centWrap {
+        display: flex;
+        justify-content: center;
+      }
+
+      /* Responsive */
+      @media (max-width: 600px) {
+        .container {
+          padding: 15px;
+          max-width: 95%;
+        }
+
+        textarea {
+          width: 100%;
+        }
+
+        .options {
+          flex-direction: column;
+        }
       }
     </style>
   </head>
   <body>
     <!-- Main Content Container -->
     <div class="container">
-      <h1>Caesar's Enigma</h1>
-      <p class="description">
-        Welcome to Caesar's Enigma, the fortress of secrecy for the modern age.
-        Whether you're sending love letters or sharing top-secret plans, our app
-        ensures your messages remain shrouded in mystery... make sure only those
-        you are talking to use the same encryption code!
-      </p>
+      <h1>Enigma</h1>
+      <h3>Simple message encrypter</h3>
+      <hr />
       <div class="options">
-        <!-- Encryption Key Input -->
-        <label for="key">Encryption Key:</label>
-        <input type="number" name="key" id="key" />
         <!-- Encrypt and Decrypt Buttons -->
         <button id="encrypt">Encrypt</button>
         <button id="decrypt">Decrypt</button>
@@ -155,81 +196,282 @@
         <h3>Input</h3>
         <!-- User Input Section -->
         <textarea
+          title="Text Input"
           name="inputArea"
           id="textInput"
           cols="30"
           rows="10"
-        ></textarea>
+        >
+          Insert text here</textarea
+        >
         <!-- Function Output Section -->
         <h3>Output</h3>
-        <p id="output"></p>
+        <div class="centWrap">
+          <button id="copyButton">Copy to clipboard</button>
+        </div>
+        <textarea
+          title="Text Output"
+          name="outputArea"
+          id="output"
+          cols="30"
+          rows="10"
+          readonly
+        >
+          Output text here</textarea
+        >
       </div>
     </div>
   </body>
   <script>
     " ";
-    // Array of alphabets for encryption/decryption
-    const alphabets = [
-      "c2DeR8Cj5;sX~tlm\+,)4}rJI1@Bi[&6^y0`dN.!$-Tnb?UZ7W#%K/a:GuYE]H3A|f 9*=%(VqohQO{PMpvLFkwgSxz",
-      "jBHQvLEcgFmqT RwMdysxn`[PUzu/rbfhG+*%@#}98Y:6t,J!eoAK)kXCOS\p?7IWilDV5N-^]~;Z{$0%=(&23|.41a",
-      "C^{3|W%ub=`d.!iR&8e)5w@v}?-Q+$7~6GtVn[Ma*40\Yk/m19I]U,;cH:XhzO(ZyJ2xKSo%q fr#NFjsgDpPlAEBLT",
-      "m|edysj^SRcrY*7%iM8xq+AWu\=P{0N`:Of31GT}/@hD% Zo;gU.w]Etp?IV5z4)vnJC[$Qb2X(kFl~HaKB,L!9-6#&",
-      "TiaK[Q$b@7jsuqoVg]Yk0(,?GJ\.MftHC5p/-FD~h61x3NZ:%9 }zB=PXE^4r!%LlwA;#+2y8&|mUcnW*v`dORSe{)I",
+    // Encryption alphabets
+    const aSet = [
+      'Q1w,V`nTi6+DG$g&H}kostbUZ[l5"Od\n' +
+        "Ic 39Wqu];Nv{Aj_)0<\r!PBmR-aF2JM'L%Cx74#Y(Xzye?^*f@h.8~pES:=Kr>/",
+      "=%(k@ud!p\rPxI_lsC;v07bh?G^*LrH`W3V{)1$E.jMFBO,9A'J:U<STDQg\"amqi>5o/N}z2eYctZ& ~yK[#\n" +
+        "]fR+-864nXw",
+      "Dr4P8AdCk*fFYt_hX]uex2Zc69l;E>!(&mnS<gW?#\r-5i}w1%/jqVvp.K\"3RoGUz^Tb'{ 7aQ`sy~BMN=\n" +
+        "@IHO,)J:L+[$0",
+      "KMylr+WUOA<d$*4w(xL,>[G5f@/t9_3!0hgTQE.H6pb^iI-C;7YzZSq%De]2J}{~u=:8vm&V\n" +
+        "RX?kP1B)nj#FN`c ao'\"\rs",
+      "ntw*$JV\n" +
+        "YDacj-QM%N_0/bGq5 <>;+H:3.S1x\"'\rFo=X8^9f~u{(hUBpRe,z[)`m@&#ZrlLATIy!Ki?6Os72g4}]PEdCkWv",
+    ];
+    const bSet = [
+      "~4^/!zodNnQ,La(1<_=+WVSx\rO-{ek#3HU9bYv:A2h}&G0@l'u`\")DT[F8\n" +
+        "ji5s6mKEcwt?RZ%q XBpy*;f>M.$]7rgCPJI",
+      "R2ya!Qir3mGBl0PJ`cE~7>s?M4Afpj/\"]+kXIewW-.g\r${,(%1vCO_D#T ;q6F*So[K=Lt5^dNVz'@YZhHb&)9x8:n}<uU\n",
+      '{NwdLg&=u_v2}?cm-j+X>[sfq).FoIM"PxDWl3]%G9\n' +
+        "AyC<t'1~ea^; hB4S57p/8HEi!ZnOkK*Tz6r:VJQR0@b(U\r$,#`Y",
+      "}Vz {+hro<1_&4^yYD=LG`jI(2bcE\rAJk0O]s'e[Bu5g7,anl\"83dxS>TQPw9X)R\n" +
+        "6qH-vtM!;.pF@i%KZW$~C?N:#/f*Um",
+      "T47j9$bl.@_1EOy'Q3[e`f%{L^Ng>}iquMWa#hx](Dm8d I=RSY+!nzt5H-\r\"UBAs<&XZ,\n" +
+        "w?)K*/J2k~;Gv0o:cpVFPC6r",
+    ];
+    const cSet = [
+      "r=Z)G]0e\rMSJ1qaE*#+d{%b$~DyLVs8RH>6?9Fp[-2i^}lU \n" +
+        "Yw</W4@`vPnONgKBto7Q\".X'T,j_uI&;3m:Ahxcz(kf!C5",
+      '@5Vz0ch&q,#1=.$mE-?g2Ro jCpT4YdG%X]>i_e{:aKPbWx)*vU}^[ALH6sMl/Q!"rOw7fnBZ\rIuy8JSD<~;\n' +
+        "9t+N`k(F'3",
+      "Ds>E3+ux'_/q7:ej$ [Nwl1.PAm{ndBGrR^0b\"fzJWIOvc%Xyhk`2@StY(<L,5Z8C!Vi]6#*\r\n" +
+        "?)-M94&}HgFQp;oUa=~TK",
+      "sCiw]\r#!-on\n" +
+        "1,E $?)+*K{Sc5U=x}ve~ZIkt;A6g9b/0z_D'T>B&H^MWPfpJ[7Y<@XG`3hOLQr\"Rjym4a%V.Nul2q(dF:8",
+      "Vgzq]@%LS^{IkP_ot&#*6\n" +
+        " CwjrT8bD)uG/?B'.RUlE~4m},sAM;Y!N[cxeZ`\r:(QiyX<3+=v\"p17>ad9W2F$JhnK-O05fH",
+    ];
+    const dSet = [
+      "DrcoaEAnIH{+t?wxX!FV<@>qigk$#WvS[*Obfm]:&Y=;(~ CBRj-Z\n" +
+        ",GdUMT8%14_'y3l0PhQ7^zu}6/\"s`J)5p2.\rL9eKN",
+      "hRpcn\rt/;Ux_slT]3ygr5v0NWo=`H>u#S)mzIjAOwei^{qL7Db!k@4$P'+8(.2\n" +
+        '<Q?fF*V9,[}-Zd1& G~MYa":KXE%JB6C',
+      "z0mXe<YVW~81Qb5u,rE/i:=Awp?@{$hgxGRlv`kIDUq%3JC}72-_!;]H[otK46(sPaZ#F.^\"9n&cf N+\rdS'*y\n" +
+        "jTMLB>O)",
+      "3Ny$IpD9;'Gwv#O-W @^nsulbdQUx}R]YV_,E1/ZgX%0rC8e24~5i([zF`=Hj>6o{M.\n" +
+        'qJmK&":?B)7h<\rcPfA*+t!TaLSk',
+      '1V$l0#{;K8+F/w!ayvqHQ9L*,m@fI6bZ B\r:x4J.=d3)?YAhM(ON2XDG&g}WnCu"~`>]zeURT_^Eri7[j\n' +
+        "kt%Sp'-oPs<5c",
+    ];
+    const eSet = [
+      "muRx9 0]W_>8/<d,{U2:J[;q7#5F1-afS!=OQY+T@I~kyw$Mgncj&3GNXDs.?Hr\n" +
+        "Bi'v(KpP4Vh\rb)zoLl^E}6ZCe*\"tA%`",
+      "sz7$@MK+CiL>w0hx`JAo{WtF~]dGQ1\"S6VcD;er?n)9[ya-H'pj=. %IlgBkZTRbPf!/v3(*,8U&q:O<u_5#XYE}4\r2Nm\n" +
+        "^",
+      'XoH ZL"k<I5*V][q+>(srDp:yvd2%N1{j.UF`;E\n' +
+        "'wugOaAn8,zJ6etM3SQ#K/lC!97@?f0_Y=i\rGWT$)4}xRB&cPb^h-~m",
+      "p#t~/}&.%FHaCKA2dwN3QyvBnh!5Pg\r6-ToUi1zk8s 7bMe`r(+\n" +
+        `'mSf)q=?<cJ>VR{;xO]EY,I*Zl@j[GLW"9u:4D^X$0_`,
+      "Bq<lK\ro/c+@e\n" +
+        "^?3}XD6'i]SCY$VJx9F2Nmb*_yh0-8.!nv~4 k(UEWpr`j[;{u:gt#,dAzPIL7ZsO5HfMTQ\"R%1>aG&)=w",
+    ];
+
+    // const v1 = alphabets;
+    const v1 = aSet;
+    const v2 = bSet;
+    const v3 = cSet;
+    const v4 = dSet;
+    const v5 = eSet;
+    const v6 = [...v1, ...v2];
+    const v7 = [...v1, ...v2, ...v3];
+    const v8 = [...v1, ...v2, ...v3, ...v4];
+    const v9 = [...v1, ...v2, ...v3, ...v4, ...v5];
+    const alphabets = [v1, v2, v3, v4, v5, v6, v7, v8, v9];
+
+    const ENCRYPTION_TAG1 = "[EN_V1]";
+    const ENCRYPTION_TAG2 = "[EN_V2]";
+    const ENCRYPTION_TAG3 = "[EN_V3]";
+    const ENCRYPTION_TAG4 = "[EN_V4]";
+    const ENCRYPTION_TAG5 = "[EN_V5]";
+    const ENCRYPTION_TAG6 = "[EN_V6]";
+    const ENCRYPTION_TAG7 = "[EN_V7]";
+    const ENCRYPTION_TAG8 = "[EN_V8]";
+    const ENCRYPTION_TAG9 = "[EN_V9]";
+    const encryptionTags = [
+      ENCRYPTION_TAG1,
+      ENCRYPTION_TAG2,
+      ENCRYPTION_TAG3,
+      ENCRYPTION_TAG4,
+      ENCRYPTION_TAG5,
+      ENCRYPTION_TAG6,
+      ENCRYPTION_TAG7,
+      ENCRYPTION_TAG8,
+      ENCRYPTION_TAG9,
     ];
 
     /**
-     * Transforms a message based on the key and direction
-     * @param {String} message - Message to be encrypted or decrypted
-     * @param {Number} key - Encryption number
-     * @param {"encrypt" | "decrypt"} direction - If the message is to be encrypted or decrypted
+     * Encrypts or decrypts a given text using a Caesar cipher and multiple rotating alphabets.
+     * When encrypting, a "magic number" is generated to shift the characters, and the encrypted
+     * text is marked with a tag and the magic number. When decrypting, the function retrieves
+     * the magic number from the tag and reverses the shift.
+     *
+     * @param {string} text - The text to be encrypted or decrypted.
+     * @param {boolean} [encrypt=true] - Flag to specify whether to encrypt(true) or decrypt(false) the text.
+     * @returns {string} - The encrypted or decrypted text.
      */
-    function transformString(message = "", key = 0, direction = "") {
-      let transformed = "";
-      for (let i = 0; i < message.length; i++) {
-        // Determine which alphabet to use based on the position in the message
-        const alphabetIndex = i % 5;
-        const alphabet = alphabets[alphabetIndex];
-        // Check if the character is in the current alphabet
-        if (alphabet.includes(message[i])) {
-          // Find the position of the character in the alphabet
-          let pos = alphabet.indexOf(message[i]);
-          let newPos;
-          // Encrypt or decrypt based on the direction
-          if (direction === "encrypt") {
-            newPos = (pos + parseInt(key)) % alphabet.length;
-          } else if (direction === "decrypt") {
-            newPos = (pos - parseInt(key) + alphabet.length) % alphabet.length;
-          }
-          // Append the transformed character to the result
-          transformed += alphabet[newPos];
-        } else {
-          // If the character is not encryptable just append the value unencrypted
-          transformed += message[i];
+    function encryptAndDecrypt(text, encrypt = true) {
+      console.log("Enigma 2.0 start:", { encrypt, text });
+
+      function generateMagicNumber() {
+        const min = 5;
+        const max = 999;
+        const number = Math.floor(Math.random() * (max - min + 1)) + min;
+        return { string: number.toString().padStart(3, "0"), number };
+      }
+
+      if (typeof text !== "string") return text;
+
+      let magicNumber;
+      let resultText = "";
+      let ENCRYPTION_TAG;
+      let tagIndex;
+
+      if (!encrypt) {
+        // 🔍 Use regex to extract [XXX[EN_VY]]
+        const match = text.match(/\[(\d{3})\[EN_V(\d)\]\]$/);
+
+        if (!match) {
+          console.warn("No valid encryption tag found. Skipping decryption.");
+          return text;
+        }
+
+        const magicStr = match[1];
+        const tagNum = parseInt(match[2], 10);
+
+        magicNumber = {
+          string: magicStr,
+          number: -parseInt(magicStr, 10), // Decryption: reverse shift
+        };
+        ENCRYPTION_TAG = `[EN_V${tagNum}]`;
+        tagIndex = tagNum - 1;
+
+        // Remove tag and magic number from the original text
+        text = text.replace(match[0], "");
+      } else {
+        // Encryption
+        tagIndex = Math.floor(Math.random() * 9);
+        ENCRYPTION_TAG = encryptionTags[tagIndex];
+        magicNumber = generateMagicNumber();
+
+        if (text.includes(ENCRYPTION_TAG)) {
+          console.log("Text is already encrypted", { text });
+          return text;
         }
       }
-      return transformed;
+
+      const alphabetLists = alphabets[tagIndex];
+      const totalAlphabets = alphabetLists.length;
+
+      console.log("Encryption tag info:", {
+        text,
+        ENCRYPTION_TAG,
+        tagIndex,
+        totalAlphabets,
+        encrypt,
+      });
+
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        const currentAlphabet = alphabetLists[i % totalAlphabets];
+        const alphabetLength = currentAlphabet.length;
+        const index = currentAlphabet.indexOf(char);
+
+        if (index !== -1) {
+          let newIndex = (index + magicNumber.number) % alphabetLength;
+          if (newIndex < 0) newIndex += alphabetLength;
+          resultText += currentAlphabet[newIndex];
+        } else {
+          resultText += char;
+        }
+      }
+
+      if (encrypt) {
+        resultText += `[${magicNumber.string}${ENCRYPTION_TAG}]`;
+      }
+
+      console.log(
+        `${encrypt ? "Encryption" : " Decryption"} process compleate.`,
+        { resultText, magicNumber, ENCRYPTION_TAG }
+      );
+
+      return resultText;
     }
 
     // Function to handle encryption
     function encrypter() {
-      const key = document.getElementById("key").value;
+      document.getElementById("output").innerText = "";
       const message = document.getElementById("textInput").value;
       // Encrypt the message and display the result
-      const encrypted = transformString(message, key, "encrypt");
+      const encrypted = encryptAndDecrypt(message, true);
       document.getElementById("output").innerText = encrypted;
+      return encrypted;
     }
 
     // Function to handle decryption
     function decrypter() {
-      const key = document.getElementById("key").value;
+      document.getElementById("output").innerText = "";
       const message = document.getElementById("textInput").value;
       // Decrypt the message and display the result
-      const decrypted = transformString(message, key, "decrypt");
+      const decrypted = encryptAndDecrypt(message, false);
+      console.log({ decrypted });
       document.getElementById("output").innerText = decrypted;
+      return decrypted;
     }
 
-    // Event listeners for the encrypt and decrypt buttons
-    document.getElementById("encrypt").addEventListener("click", encrypter);
-    document.getElementById("decrypt").addEventListener("click", decrypter);
+    const encryptButton = document.getElementById("encrypt");
+    const decryptButton = document.getElementById("decrypt");
+    const copyButton = document.getElementById("copyButton");
+    const textInput = document.getElementById("textInput");
+    const outputArea = document.getElementById("output");
+
+    /**
+     * Copy the given text to the clipboard.
+     * @param {string} text - Text to copy.
+     */
+    async function copyTextToClipboard(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        console.log("Text copied to clipboard successfully!");
+      } catch (err) {
+        console.error("Failed to copy text: ", err);
+      }
+    }
+
+    // Event listeners
+    encryptButton.addEventListener("click", () => {
+      const inputText = textInput.value;
+      const encryptedText = encryptAndDecrypt(inputText, true);
+      outputArea.value = encryptedText; // Display the encrypted text
+    });
+
+    decryptButton.addEventListener("click", () => {
+      const inputText = textInput.value;
+      const decryptedText = encryptAndDecrypt(inputText, false);
+      outputArea.value = decryptedText; // Display the decrypted text
+    });
+
+    copyButton.addEventListener("click", () => {
+      const text = outputArea.value; // Get the output field text
+      copyTextToClipboard(text); // Copy it to clipboard
+    });
   </script>
 </html>
