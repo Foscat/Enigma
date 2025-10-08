@@ -2,7 +2,7 @@
 
 Caesar's Enigma is a simple web-based tool for encrypting and decrypting messages using a modified Caesar cipher. It's named after the famous encryption technique attributed to Julius Caesar and is designed to add an extra layer of privacy to your messages.
 
-Deployed Version(https://foscat.github.io/Enigma/)
+[Deployed Version](https://foscat.github.io/Enigma/)
 
 ## Features
 
