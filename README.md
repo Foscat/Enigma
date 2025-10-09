@@ -1,18 +1,53 @@
-# Enigma
+# 🧩 Caesar's Enigma
 
-Caesar's Enigma is a simple web-based tool for encrypting and decrypting messages using a modified Caesar cipher. It's named after the famous encryption technique attributed to Julius Caesar and is designed to add an extra layer of privacy to your messages.
+**Caesar’s Enigma** is a modern reimagining of the classic Caesar cipher — a simple yet powerful web-based encryption tool built with HTML, CSS, and JavaScript.  
+It lets users **encrypt and decrypt text**, **copy or paste messages**, and **learn how it all works** through an accessible, built-in guide.
 
-Deployed Version(https://foscat.github.io/Enigma/)
+🔗 **Live Demo:** [https://foscat.github.io/Enigma/](https://foscat.github.io/Enigma/)
 
-## Features
+---
 
-- Encrypt and decrypt messages using a customizable encryption key.
-- Supports multiple alphabets to increase security.
-- User-friendly interface with easy-to-use controls.
+## ⚙️ Overview
 
-## How to Use
+This project takes inspiration from the ancient Caesar cipher — one of the earliest known encryption techniques — and expands on it with a **universal alphabet system** that supports:
 
-1. Go to [deployed version](https://foscat.github.io/Enigma/) or clone this repository to your local machine.
-2. Enter your message in the input area.
-  a. Click the "Encrypt" button to encrypt your message.
-  b. To decrypt a message click the "Decrypt" button.
+- Letters, numbers, punctuation, and symbols.
+- Modern UTF-8 characters.
+- Full bidirectional (encrypt/decrypt) message handling.
+
+It’s a clean, interactive, front-end application with no server dependencies, designed for **educational use, secure local testing, and lightweight message encoding.**
+
+---
+
+## ✨ Features
+
+✅ **Modified Caesar Cipher Logic**  
+A more flexible algorithm that can handle multi-byte characters (like emojis) and full UTF-8 input.
+
+✅ **Universal Alphabet Support**  
+Encrypts nearly any character a user can type — including emojis, punctuation, and whitespace.
+
+✅ **Dual Mode Operation**  
+Automatically detects and decrypts tagged messages or encrypts new input.
+
+✅ **Clipboard Integration**  
+Easily copy encrypted messages or paste text directly from your clipboard.
+
+✅ **Accessible UI/UX**  
+A clean, dark-blue themed interface with high-contrast design, keyboard navigation, and a modal help guide accessible via an info icon.
+
+✅ **Responsive Design**  
+Fully responsive layout, ideal for both desktop and mobile users.
+
+---
+
+## 🧠 How It Works
+
+1. **Input your text** in the provided textarea.
+2. **Encrypt** the message using the "Encrypt" button.  
+   - The cipher shifts characters within a predefined alphabet, wrapping around seamlessly.  
+   - Each character maps to another within the universal set.
+3. **Decrypt** an encrypted message using the "Decrypt" button.  
+   - The algorithm reverses the shift and restores your original text.
+4. **Double-click** the input box to auto-detect and process the message (encrypt or decrypt automatically).
+5. **Copy** or **Paste** using the clipboard buttons for quick sharing.
