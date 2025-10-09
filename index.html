@@ -3,31 +3,82 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Enigma Cipher 2.0</title>
+    <title>Enigma Cipher</title>
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      href="/Enigma/EnigmaLogo.png"
+      type="image/x-icon"
+    />
+    <link rel="icon" href="/Enigma/EnigmaLogo.png" type="image/x-icon" />
+    <!-- SEO & Metadata -->
+    <meta
+      name="description"
+      content="Encrypt and decrypt messages instantly with Enigma Cipher — a modern cipher tool inspired by the classics."
+    />
+    <meta
+      name="keywords"
+      content="encryption, cipher, Enigma, decryption, encrypt tool, secure text, cipher app, online encrypter, decode messages"
+    />
+    <meta name="author" content="Kyle Foster" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph for social sharing -->
+    <meta property="og:title" content="Enigma Cipher" />
+    <meta
+      property="og:description"
+      content="A sleek modern cipher app for encrypting and decrypting text."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://foscat.github.io/Enigma/" />
+    <meta
+      property="og:image"
+      content="https://foscat.github.io/Enigma/EnigmaLogo.png"
+    />
+
+    <!-- Reset css to make pages viewable on all browsers -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="/Enigma/reset.css"
+    />
 
     <style>
       /* =============================================================
          🎨 ENIGMA CIPHER 2.0 - Dark Blue / Gold Theme
          Author: Kyle Foster
+         Purpose: Provides elegant, high-contrast styling optimized 
+         for clarity, accessibility, and visual balance.
          ============================================================= */
 
+      /* =============================================================
+         🌈 THEME VARIABLES
+         - Centralized color and style configuration.
+         - Uses deep blues, gold, and neutral greys for a refined look.
+         ============================================================= */
       :root {
-        --primary-darkest: #0a105c;
-        --primary-dark: #101a78;
-        --primary-light: #1a258f;
-        --grey-dark: #2a2a2a;
-        --grey: #3e3e3e;
-        --grey-light: #5a5a5a;
-        --black: #000000;
-        --white: #ffffff;
-        --accent-gold: #d4af37;
-        --accent-gold-light: #f4d67a;
-        --text-light: #f8f8f8;
-        --text-muted: #aaaaaa;
-        --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.4);
-        --transition-fast: 0.2s ease-in-out;
+        --primary-darkest: #0a105c; /* Deep navy base for backgrounds */
+        --primary-dark: #101a78; /* Slightly lighter blue for depth */
+        --primary-light: #1a258f; /* Accent blue for hover and focus */
+        --grey-dark: #2a2a2a; /* Main grey tone for panels or inputs */
+        --grey: #3e3e3e; /* Button and neutral elements */
+        --grey-light: #5a5a5a; /* Borders and lighter UI details */
+        --black: #000000; /* Base black for contrast */
+        --white: #ffffff; /* Used for text and highlights */
+        --accent-gold: #d4af37; /* Primary accent - gold */
+        --accent-gold-light: #f4d67a; /* Softer gold for hover and glow */
+        --text-light: #f8f8f8; /* Default text color on dark bg */
+        --text-muted: #aaaaaa; /* Secondary text tone */
+        --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.4); /* Subtle shadows for depth */
+        --transition-fast: 0.2s ease-in-out; /* Consistent transition timing */
+        font-size: 1rem;
       }
 
+      /* =============================================================
+   🧭 GLOBAL LAYOUT
+   - Creates centered flex layout with smooth gradient background.
+   ============================================================= */
       body {
         background: linear-gradient(
           145deg,
@@ -45,12 +96,21 @@
         align-items: center;
       }
 
+      /* =============================================================
+   🏷️ HEADINGS
+   - Golden accent titles and clean spacing hierarchy.
+   ============================================================= */
       h1 {
         font-size: 2rem;
         letter-spacing: 1px;
         color: var(--accent-gold);
         text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
         margin-bottom: 0.75rem;
+        text-align: center;
+      }
+
+      h3 {
+        font-size: 1.5rem;
       }
 
       p.subtitle {
@@ -60,39 +120,61 @@
         margin-bottom: 1.5rem;
       }
 
+      /* =============================================================
+   📦 MAIN CONTAINER
+   - Core interface panel with rounded edges and frosted glass effect.
+   ============================================================= */
       main {
-        background-color: rgba(10, 16, 92, 0.8);
-        border: 1px solid var(--accent-gold);
-        border-radius: 12px;
-        box-shadow: var(--shadow-soft);
-        padding: 1rem 2rem;
+        background: rgba(26, 37, 143, 0.2); /* frosty blue base */
+        -webkit-backdrop-filter: blur(16px) saturate(180%);
+        backdrop-filter: blur(16px) saturate(180%);
+        border: 1px solid rgba(212, 175, 55, 0.25);
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        padding: 2rem;
         width: 90%;
-        max-width: 700px;
+        max-width: 1000px;
         display: flex;
         flex-direction: column;
         align-items: stretch;
         gap: 1rem;
       }
 
+      /* =============================================================
+   ✍️ TEXTAREAS
+   - Dark input fields with stronger frosted effect and gold glow on focus.
+   ============================================================= */
       textarea {
-        background-color: var(--grey-dark);
+        background: rgba(
+          255,
+          255,
+          255,
+          0.05
+        ); /* translucent for frosted effect */
         color: var(--text-light);
-        border: 1px solid var(--grey-light);
-        border-radius: 8px;
-        padding: 0.75rem;
+        width: 95%; /* expanded to 80% of parent */
+        margin: 10px auto; /* center horizontally */
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 12px;
+        padding: 1rem;
         resize: vertical;
         font-size: 1rem;
         min-height: 120px;
         transition: border var(--transition-fast),
-          box-shadow var(--transition-fast);
+          box-shadow var(--transition-fast), background var(--transition-fast);
       }
 
       textarea:focus {
         outline: none;
         border-color: var(--accent-gold);
-        box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 12px rgba(212, 175, 55, 0.5);
       }
 
+      /* =============================================================
+   🔘 BUTTON STYLES
+   - Glassy buttons with gold glow and hover pop effect.
+   ============================================================= */
       .button-row {
         display: flex;
         flex-wrap: wrap;
@@ -102,22 +184,24 @@
       }
 
       button {
-        background-color: var(--grey);
+        background: rgba(255, 255, 255, 0.08); /* subtle glass effect */
         color: var(--accent-gold);
-        border: 1px solid var(--accent-gold);
-        border-radius: 6px;
-        padding: 0.6rem 1.25rem;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        border-radius: 12px;
+        padding: 0.6rem 2.25rem;
         cursor: pointer;
-        font-size: 0.95rem;
-        letter-spacing: 0.5px;
+        font-size: 1.25rem;
         font-weight: 500;
+        letter-spacing: 0.5px;
+        -webkit-backdrop-filter: blur(6px);
+        backdrop-filter: blur(6px);
         transition: all var(--transition-fast);
       }
 
       button:hover {
-        background-color: var(--primary-light);
+        background: rgba(212, 175, 55, 0.2);
         color: var(--white);
-        box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+        box-shadow: 0 4px 16px rgba(212, 175, 55, 0.5);
         transform: translateY(-1px);
       }
 
@@ -126,6 +210,15 @@
         opacity: 0.85;
       }
 
+      button:focus {
+        outline: 2px solid var(--accent-gold-light);
+        outline-offset: 2px;
+      }
+
+      /* =============================================================
+   📜 FOOTER
+   - Muted tone with golden highlights.
+   ============================================================= */
       footer {
         margin-top: 1rem;
         color: var(--text-muted);
@@ -138,33 +231,33 @@
       }
 
       /* =============================================================
-   ℹ️ Info Button & Modal Help Section
+   ℹ️ INFO BUTTON & MODAL
+   - Provides a clean help overlay with fade-in animation.
    ============================================================= */
-
-      .info-btn {
+      .info-button {
         position: sticky;
         top: 1rem;
-        left: 85%;
-        background: rgba(20, 25, 60, 0.2);
+        left: 90%;
+        padding: 5px;
+        background: rgba(20, 25, 60, 0.25);
         color: var(--black);
         border: 1px solid var(--accent-gold);
         border-radius: 50%;
-        width: 75px;
-        height: 52px;
-        font-size: 1.25rem;
+        width: 40px;
+        font-size: 1rem;
         cursor: pointer;
-        box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 0 12px rgba(212, 175, 55, 0.35);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
         transition: all var(--transition-fast);
         z-index: 100;
       }
 
       .info-btn:hover {
-        background: var(--accent-gold);
+        background: rgba(212, 175, 55, 0.25);
         color: var(--black);
         transform: scale(1.05);
-        box-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
+        box-shadow: 0 0 18px rgba(212, 175, 55, 0.6);
       }
 
       /* Modal Base Styles */
@@ -178,28 +271,42 @@
         height: 100%;
         overflow-y: auto;
         background-color: rgba(0, 0, 0, 0.55);
-        backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
-        padding-top: 60px;
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        padding-top: 30px;
       }
 
       /* Modal Inner Box */
       .modal-content {
         background: rgba(20, 25, 60, 0.85);
-        border: 1px solid var(--accent-gold);
+        border: 1px solid rgba(212, 175, 55, 0.35);
         color: var(--text-light);
         margin: auto;
         padding: 2rem;
-        border-radius: 12px;
+        border-radius: 16px;
         width: 90%;
         max-width: 600px;
-        box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
+        box-shadow: 0 0 24px rgba(212, 175, 55, 0.3);
         animation: fadeIn 0.3s ease;
       }
 
       .modal-content h2 {
         color: var(--accent-gold);
         margin-top: 0;
+        font-size: 1.75rem;
+        margin-bottom: 10px;
+      }
+
+      .modal-content h3 {
+        color: var(--accent-gold);
+        margin-top: 0;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+
+      .modal-description {
+        font-size: 1rem;
+        margin: 10px 0 20px;
       }
 
       .modal-content li {
@@ -209,11 +316,22 @@
       .modal-content ol {
         margin-top: 0.3rem;
         margin-bottom: 1rem;
+        margin-left: 2rem;
+        list-style-type: decimal;
+      }
+
+      .modal-note {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        background-color: var(--primary-darkest);
+        padding: 5px 10px;
+        border: 1px solid var(--accent-gold-light);
       }
 
       .close {
         color: var(--accent-gold);
-        float: right;
+        margin-left: 85%;
+        padding: 0.5rem 1.25rem;
         font-size: 1.5rem;
         font-weight: bold;
         cursor: pointer;
@@ -224,6 +342,9 @@
         color: var(--accent-gold-light);
       }
 
+      /* =============================================================
+   ✨ ANIMATIONS & RESPONSIVE
+   ============================================================= */
       @keyframes fadeIn {
         from {
           opacity: 0;
@@ -237,7 +358,7 @@
 
       @media (max-width: 500px) {
         main {
-          padding: 5rem 1.25rem 1.25rem;
+          padding: 3rem 1.25rem 1.25rem;
         }
 
         textarea {
@@ -252,75 +373,155 @@
   </head>
 
   <body>
-    <!-- Info Button -->
+    <!-- ℹ️ Information Button (opens the Help Modal) -->
     <button
-      type="button"
       id="infoButton"
-      class="info-btn"
+      class="info-button"
+      aria-label="Open help and instructions"
       title="How to use Enigma"
     >
-      ❔
+      <span aria-hidden="true">❔</span>
     </button>
 
-    <!-- Modal Help Section -->
-    <div id="helpModal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>How to Use Enigma</h2>
-        <ul>
-          <li>
-            <strong>Encrypting text:</strong>
-            <ol>
-              <li>
-                Enter the text you wish to encrypt in the “Input” section.
-              </li>
-              <li>Double click the text box or click the “Encrypt” button.</li>
-              <li>The encrypted text appears in the “Output” section.</li>
-              <li>Click the “Copy to clipboard” button to copy your result.</li>
-            </ol>
-          </li>
-          <li>
-            <strong>Decrypting text:</strong>
-            <ol>
-              <li>Enter the encrypted text in the “Input” section.</li>
-              <li>Double click the text box or click the “Decrypt” button.</li>
-              <li>The decrypted text appears in the “Output” section.</li>
-            </ol>
-          </li>
-        </ul>
+    <!-- 🧭 Help Modal -->
+    <div
+      id="helpModal"
+      class="modal"
+      aria-hidden="true"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div class="modal-content" role="document" tabindex="-1">
+        <!-- Close Button -->
+        <button class="close" aria-label="Close help window">&times;</button>
+
+        <h2 id="helpTitle">How to Use Enigma</h2>
+        <p class="modal-description">
+          Enigma is a text encryption and decryption utility. You can enter text
+          into the
+          <strong>Input</strong> box and either double-click the box or use the
+          <strong>Encrypt</strong> and <strong>Decrypt</strong> buttons to
+          process your text.
+        </p>
+
+        <hr />
+
+        <section aria-labelledby="encryptGuide">
+          <h3 id="encryptGuide">Encrypting Text</h3>
+          <ol>
+            <li>
+              Enter your desired text in the <strong>Input</strong> section.
+            </li>
+            <li>
+              Double-click the input box or click the
+              <strong>Encrypt</strong> button.
+            </li>
+            <li>
+              Your encrypted result will appear in the
+              <strong>Output</strong> box.
+            </li>
+            <li>
+              Click <strong>Copy to Clipboard</strong> to copy your result.
+            </li>
+          </ol>
+        </section>
+
+        <section aria-labelledby="decryptGuide">
+          <h3 id="decryptGuide">Decrypting Text</h3>
+          <ol>
+            <li>
+              Paste or type the encrypted text in the
+              <strong>Input</strong> section.
+            </li>
+            <li>
+              Double-click the box or click the <strong>Decrypt</strong> button.
+            </li>
+            <li>
+              The decrypted message will appear in the
+              <strong>Output</strong> section.
+            </li>
+          </ol>
+        </section>
+
+        <p class="modal-note">
+          💡 <strong>Tip:</strong> Enigma auto-detects whether to encrypt or
+          decrypt based on your input.
+        </p>
       </div>
     </div>
 
     <header>
-      <h1>Enigma Cipher 2.0</h1>
+      <h1>Enigma Cipher</h1>
       <p class="subtitle">
         Encrypt, decrypt, and conceal your messages with style.
       </p>
     </header>
 
     <main>
-      <label for="textInput">Your Message:</label>
-      <textarea
-        id="textInput"
-        placeholder="Type or paste your text here..."
-      ></textarea>
+      <!-- Input Section -->
+      <section aria-labelledby="inputLabel">
+        <h3 id="inputLabel">Input</h3>
+        <div class="button-row">
+          <!-- Copies text content from clipboard and pastes it in input box. -->
+          <button
+            id="pasteButton"
+            type="button"
+            aria-label="Paste text from clipboard"
+          >
+            📋 Paste
+          </button>
+        </div>
+        <textarea
+          id="textInput"
+          name="inputArea"
+          title="Text Input Area"
+          placeholder="Insert text here"
+          aria-describedby="inputHelp"
+        ></textarea>
+      </section>
 
+      <!-- Output Section -->
+      <section aria-labelledby="outputLabel">
+        <h3 id="outputLabel">Output</h3>
+        <div class="button-row">
+          <!-- Copies text content and saves it to the clipboard. -->
+          <button
+            id="copyButton"
+            type="button"
+            aria-label="Copy output to clipboard"
+          >
+            🧾️ Copy
+          </button>
+        </div>
+        <textarea
+          id="output"
+          name="outputArea"
+          title="Text Output Area"
+          placeholder="Output text appears here"
+          readonly
+        ></textarea>
+      </section>
+
+      <!-- Encrypt / Decrypt Buttons -->
       <div class="button-row">
-        <button type="button" id="encrypt">Encrypt</button>
-        <button type="button" id="decrypt">Decrypt</button>
-        <button type="button" id="copyButton">Copy</button>
-        <button type="button" id="pasteButton">Paste</button>
+        <button
+          id="encrypt"
+          type="button"
+          aria-label="Encrypt the entered text"
+        >
+          🪄 Encrypt
+        </button>
+        <button
+          id="decrypt"
+          type="button"
+          aria-label="Decrypt the entered text"
+        >
+          🔮 Decrypt
+        </button>
       </div>
-
-      <label for="output">Output:</label>
-      <textarea
-        id="output"
-        readonly
-        placeholder="Result will appear here..."
-      ></textarea>
     </main>
 
-    <footer>© <span>2025</span> Enigma Cipher by Kyle Foster</footer>
+    <footer>&copy; <span>2025</span> Enigma Cipher by Kyle Foster</footer>
 
     <script>
       /**
@@ -348,39 +549,68 @@
 
       // --- Alphabet sets ---
       const aSet = [
-        "J`1j'2]{WOsy#\"PGL;&Ig:6DK,Q%NkT>4V=[09mdn*S@xc-<^Y$?(BF7qvEtreh\nH.aM5_!3i8X)AUCo\rfulpb~+Z}/z Rw",
-        "0q.C_p1,wj\"@Fk\nd>L)$;8zJt+fAE*Ga297!Q=/h%N`VxY'M~KR:3&mv4BobWy}^DgZ?U\r IPs[HOcrn#6i<TSX]-e5{l(u",
-        "$L0RTm~o_FuW%bk\n\rMwd(Q/[-G,a`5NJ)DAf:+ ]?@thEx*#ZO=4U7vIPr>lHsnX;e<i&Y\"9Sy3qz1^!BKj'cg{Vp2.}86C",
-        "$]7(Sw *Q>D.hY\"[NRIu^G<_yK12:qXiCgb3\npUlLn9E)0J=kHvT-4~f@5}%s`e+PZ';WFo?/txA,zda#B68\r!m&{crMVOj",
-        "\"{4c+fe2P`XYznt9.%:M^[K;'OgNF1dI6Qi#amj0xyA(pHG]5Uw3\n_sLRoVb\r}~$W!k8-*/rC?&hZv7@)=luDE>SJBTq< ,",
+        "jvb\\(M_}7GZh[cAK+<P>FH;w6$VTpq{#m5O8LEDu4&,:]I!~QRBY3*/txn\n" +
+          "9`2?f)=1e%\"W0J.-@'gisl^rSCXkaodyzU|N",
+        "o7m!UjD49'#W}N|&Rx,*Vq?\"va2fuc(giytB~=bd>\\.K;Ms{z@G<O)r5hAEC:1`L+^-8PZS\n" +
+          "lYp[e$k/wT%H03IJXnQ6F]_",
+        `,&sUM)4JE6^$C{N'VfSdTumX;eo#r"Q\n` +
+          "Y[O+|R73%5@Fz9GxAK*0>vD1-]nI~ykj_!q(w2}Pib.c<?\\BaLh/gWp:HZlt`8=",
+        "5b7\\X1!+$4HhI*_nQzoO]t`SK6J)xGy?/A=-{YEpBi8~>C9jdq|M[LZNslf@\".R,gk%vTw(^<2'FD3a&m;:rcPe#\n" +
+          "0VUWu}",
+        "emAC#J&r-nUcRT<(Dx5w>Q]XZz)349d'K\"F:!?j7Lo*[vNVfPM0sW{@E_YqpBHgy|OilI`\n" +
+          "GS.6k^}a/;2~$u+%=8h,b\\1t",
       ];
       const bSet = [
-        "jf3i)<@#Tu{mYK;ML:\n]Wts\"c1XOIrUNk_6bVpE7>Sy`+d&8qRz^nxG?P*[2Hv%w$=g!\rD}ae~Q40,9Z. AC(l'/hJ5BF-o",
-        "/#0_f^\"Z6YP&Sy.Or\n?*1Mv$8<gio,cUD)[p@!3Kz=2k]jd`Qa4m5GshE%9eAV\r(qNwu:Htlx-} 7R;BW>b'{ILCJTF+n~X",
-        "+Mws^HiD'uBjF1\"I&{RV@vTL_Z%aG0!E.g=t*:? 8SyQ`n~#]5ef\r/(;x3JbYAK2hcm-Uqd<W[}ko,NXCPp>4)z9rO\n$76l",
-        ")<MqmrDJ;/knAL@1I +(WTC#2g\r8lBFZ.z:-V$R6uoHe*cw=3'vE[hU5d\"aYP^_?9Q,7S0Nfjb&{Xsx}O]%4>p\n`!KGyti~",
-        "K0~{C39\nxj@,HR*5sSp6yn_(%m2AIL/O+8<lFg)>qkDdGhfJu-MZ;$.:t4Wv} co\r#=a1Ei^[\"U&Q]VB?z!eXwTNr'7YbP`",
+        '4|}z0VTNIsx1.Ubhn:"dCAc=56+Rva^F2HYm8-(rt%*Q&Z`_S9>pGX!BL/kM;D{l]j\\\n' +
+          "eJ'@w<~u?3#Kfq$)P[EO,7yogiW",
+        "~b7OR5m#+W-!LAd?GeDQZq:_=PaM$;.@nI^y<9S[Yig{\n" +
+          "t,%'1j*}`VlrEfhpwckz4\\3U/620vK)o\"|T>XC]sxuJFH&(NB8",
+        "@9I`G=#N{!e3blkF)cB,tPEL\"(d*KV~vo]&4fZsr;5Xw}Tagm'.[6YznMp1j0ihy^+AD8xJu\n" +
+          "|CH>$_W7OR:%Q\\<2-q/US?",
+        'v9ZiI0}<3wPd":_{JVDTWXFG7CmL?B;NRSy#1n)u=2zK6\n' +
+          "^]\\U!HEg$k8p'aqx[AjY%>Q-eb+/f4&s~l,|`*c5@t(oOhM.r",
+        `QvOkPH|+d>_#N^x5oSz41)Us9fbA,?ig0=@&ZYIX'D[GlV{/t!:KTjWR"wqyn\\pM7JL~6cre8Bamh\n` +
+          "(C$*}.<u2%-]`3FE;",
+        '{tP.@"*\\]wkMlW!seZEaT}v-q97y~:146H_NoKxmc$?hJI\n' +
+          "|g2VnL'(U0fiuDb^&F=#,d/BzQ><XS%R5j[GO`r8Ap)Y3;+C",
       ];
       const cSet = [
-        "B(d5n{?;S-1r}M*h9<wA!/oe\nWZf2`>H+G,J)vcNKxg&yYFE3m^jIl40#s_]p~TuQ8C\"[\r' VO.=$Li@z:6atU%PRD7bkXq",
-        "kAo!9TD,JpH7(i)dB6fM0;^=`E~Y{$_R:sWXcZ]>?mtU/rS qj'vQg2hb.&<L1GuN%3I8}@yez\"-O#*C5\rVP\n[xl4Fn+awK",
-        "?M#tVRK\"%cA.)='~`;eLoJEU0TzBg:4vj}Z6qpw<nNDdi]@fX\rQh1!bs9u+kmWy/>G{axIS\n(YP^_$8l-F*C2&7[r5 HO3,",
-        ")Q7YW\rd_.!8;Z-%1PKUA'XVtCz9he$6mNvcpaSgLkyi}l,~M0j[O*f{5^F=\"rn3/\n<D:oER4`u+q(wBG?sbH2&Jx @>T]#I",
-        ",kH3QWMfV_+.u]t\"NC}`Yw\rz~v a^-ro0nc1l;e4/GS2UE)ZOP$jg5dAxi%yLp*{#bIsB8<R(&T!X'=6DhK\n?:J9@7m[>Fq",
+        "93`#:/pbjt;uA7C*<v\\oU6P8^4Si&]\n" +
+          `Nw$=-Q@yLac[E5XVxe{0Y%2Mm+?Tg1KHs|h"Z)>k}OWFqJRD.Gdlr('f_B,nI~z!`,
+        `$~YHT+P)a5qF'GD"N!@?i8.-X32\n` +
+          "WCSRzx1L,\\_[V]l;My(`<7*ro}4Q=d/pgAfm6JkuZ#Bb%Iwj>O{e&sch9U:|0vnK^Et",
+        'UBCi[NV=JbtIp7!dYj:S|-,L@k4s{lrq}O1^T)*uHR+a;%&$o3QEhcA"v\n' +
+          "KDP]9fZnWe5Xy'g(F_0.28MG6\\wmx#?<`~/>z",
+        "'e3]Z>SC$:Byf;9&z=O\\^vq[XT(dY0`)8,F.?5Ps-l/p<7nL1Kc_Ew+x*@h4%|H#t6\"IjDkiGmRb~2NWg\n" +
+          "a{ru}!UAQoVJM",
+        '_;Dp3*%MWI!s}jQbh@8UeFziEk[BR<1SgZaHG"#>4{Tom26tnAw\\:Y&~v)q0$xXc.y(l?9\n' +
+          "u-dJ|f5^LCOrN],V+`P7K='/",
+        "A)#3iY'L;X1,dSQgV7w%er?[2P]k&F6>=I/:0bap9vj\n" +
+          'n^JyMf$G_5Hh.xZT"KO|cU({q!N*o\\t@8`z-u4WlCRB<+mEs~D}',
       ];
       const dSet = [
-        "Bi@l+S4o*aL I:bAhv~^D#9)q{3,uPWpwN]7-O52fCE\r>crdXJ}t\nge/`MHnV_?0.s6UYG<z['y!j$\"Q=8K;kTRx&(mF%Z1",
-        "uEMU~:4R+g_&BL*[Ff!}>T7VG{rzX)P;9=^5(qx'.3] O@meKWt\"wSsQ2\rjlphYbC\noiJNAD<8Z-0Hky?/d,I`1vnc$%#a6",
-        "Mf6Qhu\"3,'tg9#!85?pNSH2< zakcobq*{vxP+7&_.j;FV`T0^nDy1E>mJ~B/]$A\rUdeK\nRrIL@4Y[G)l:swXZ-(Oi}C%=W",
-        "oP@!R'-ST>~a^YN;pH%uwes2V\n9k*#W}BiX 6{\r=,]\"(l_?MUt)$dDErqIF&35QxLZz4J8O[7+K:Cyb0vG<hmAc1ngf`j/.",
-        "\"Y!JO d(,AxE9Sm5fq>y7Z^]\rV?0DBj&N}-C<`sU2hFnX/GL@RWMKI.*P8;#)ui3'rQcgp=:$a61lb4wzH\n+~vt[{eT_o%k",
+        'W|gvPy+3?~nw"\n' +
+          "zA*Sib2LhImkl.pfcr[,!U}j&H48d5XVs$<(9=ea^Y]'`%_RMZq#>{;EJx@D0oG1Ku6Q:-\\tC7NTF)OB/",
+        `/LC*E[Ou8?$o'"pNKj9XJ~3ihMs(Bbv4\n` +
+          "}^w:{al&#,HRe\\m<IAtP0f2|Qzk.`+y5cFGZ@DWnqSgU6]dV>=7%xT!_1Y)r-;",
+        "os;:i{=w1J}u*rqlI#)EzA2~$0<v?_K5V,WM8xS(b9Qc%k@a/dRj74XYf3p'n>LD.Cmg\n" +
+          'B`hy+P-e^|"]O!tZT\\UF[H6&GN',
+        "\"GnpS4$u^T:j<WVU=13{QaL.c+0bZRO)\\|!r6;wot`E'q?x8di_>sYl\n" +
+          "]FHk,Nh2I}CJ5-@*9Mg%&7#Kmv~XeBA/[(fyPDz",
+        'o2}>j?":W!ek.f-L=yO6Y(CdmZawgrsDP\n' +
+          "<#T;`v+h$Eqpz9M&UX{n@t/*[c73~B)S_R%Ju'Ix810A,QHV4i^\\GbF]l|KN5",
       ];
       const eSet = [
-        "BPo=\r<X_Kfg )iET:p86`bHO/dhSZNac^VCw?rF}elU'%@u4[j]{D0&y7+2,Iv.5sRnqmkJM>AW*\n\"tYxG-~1(!;3$zQL9#",
-        "bTkD<X5zIp?wFiCK,Pv-QR/':~4Aha$nWG*1gL63N}fslJY+y^\n;U!8o2\rS([jH&\"Z]m%uc`V#rt) BM_e{qE>0O7=9.d@x",
-        "\",6g)X8\r03![YV>n2hAQW;qmN<-49z5ke$Kf+GtC@1R{i}v=:*~xOMr'uwJSy_ljUDbo%#sZTI]E\nd(`^/?B&.PcLapH F7",
-        '>(,`SKoshY4J{D1)pEed$l;3}Bk#/L6n\rQU^N7.!-rmizwf]u_Ov+b~TR025:yqgH&FVPIWx*Cj? aZM%@\n8=GAtX[<"9c',
-        "n<_\n#)3$mT8%{XSt!MuA^V56Bcr2J.FxHlZo?(\"\rE*/zwaO@9`]f7q&+0N'} RjGCI;YbgD1>~LhsW-y:QUKP[d4epvi,k=",
+        `p,sNO<]C$Y|tEuzZ@"\\#MxJ=G9WD}{i!Sl)2&;T>BP50kXo+v'f_3hn-K[48R/.QVgymA6b~Urc^?w%7\n` +
+          "jH(FaL:e*`qI1d",
+        "0mCzSs}Mwdv@NfH_Qbn=9;GR?q~OTFa\\J\"BKc8Yh#lgI*,XZ7<k/(UtA^uD&jep!W'i:+%1>]V.)-3rL42{yx5|6`[P$E\n" +
+          "o",
+        "E[fct7G?]5&F_v'2XMQ=/yBsY4<I`O^bVj%J-!L0*8T~oh:3l;auKgDmAP6SRd(|\"}\\\n" +
+          "x+n9pU$NZk.iwr{1@q)Ce,#zWH>",
+        'lFK_46?dwkLZ,93>;WGNqvhjSC\\[Y@QX$Un)"Bt*Is2AHR#a/J]~1!\n' +
+          "%(m8Trbu-<ypzO|EePfVDiocg:}`+0={.'&7M5^x",
+        `>+fg\\D{J'RqABy^@[i"asp:/XHhM;rVScI\n` +
+          "|Y}8&O7v2Z!%N3n?LP~CK0FQ]m,z)*tj(l5`oE-bk#W$U6=9Txu4de<.Gw1_",
       ];
 
       const v1 = aSet;
@@ -393,6 +623,15 @@
       const v8 = [...v1, ...v2, ...v3, ...v4];
       const v9 = [...v1, ...v2, ...v3, ...v4, ...v5];
       const alphabets = [v1, v2, v3, v4, v5, v6, v7, v8, v9];
+
+      console.log(
+        "\nLengths\n\n",
+        v1.length,
+        v2.length,
+        v3.length,
+        v4.length,
+        v5.length
+      );
 
       const encryptionTags = Array.from(
         { length: 9 },
@@ -501,6 +740,8 @@
 
       /**
        * Handles all DOM bindings and user interactions for the Enigma Cipher UI.
+       * Provides accessible modal behavior, clipboard utilities, and
+       * smart encryption/decryption triggers.
        * @class
        */
       class EnigmaUI {
@@ -518,41 +759,60 @@
           this.copyButton = document.getElementById("copyButton");
           /** @type {HTMLButtonElement} */
           this.pasteButton = document.getElementById("pasteButton");
-          /**
-           * Display the Help Modal when the info button is clicked.
-           */
-          /** @type {HTMLButtonElement} */
+
+          /** @type {HTMLDivElement} */
           this.modal = document.getElementById("helpModal");
           /** @type {HTMLButtonElement} */
           this.infoButton = document.getElementById("infoButton");
           /** @type {HTMLSpanElement} */
           this.closeBtn = document.querySelector(".close");
 
+          /** @type {Boolean} */
+          this.modalOpen = false;
+          /** @type {HTMLElement|null} The element that opened the modal for focus return. */
+          this.lastFocusedElement = null;
+
           this.bindEvents();
         }
 
-        /** Bind all event listeners. */
+        /** Bind all event listeners for buttons, modal, and accessibility. */
         bindEvents() {
+          // --- Core Encryption / Decryption Controls ---
           this.encryptButton.addEventListener("click", () => this.encrypt());
           this.decryptButton.addEventListener("click", () => this.decrypt());
           this.copyButton.addEventListener("click", () => this.copyOutput());
           this.pasteButton.addEventListener("click", () => this.pasteInput());
           this.textInput.addEventListener("dblclick", () => this.autoMode());
-          // Open modal
-          this.infoButton.addEventListener("click", () => {
-            console.log("Show info modal", this.modal);
-            this.modal.style.display = "block";
-            this.infoButton.style.display = "none";
+
+          // --- Modal Controls ---
+          this.infoButton.addEventListener("click", () => this.openModal());
+          this.closeBtn.addEventListener("click", () => this.closeModal());
+
+          // --- Global Click Event (to close modal when clicking outside) ---
+          window.addEventListener("click", (event) => {
+            if (this.modalOpen && event.target === this.modal) {
+              this.closeModal();
+            }
           });
 
-          // Close when 'x' is clicked
-          this.closeBtn.addEventListener("click", () => {
-            console.log("Close info modal");
-            this.modal.style.display = "none";
-            console.log(this.modal);
-            this.infoButton.style.display = "block";
+          // --- Keyboard Accessibility (ESC key, focus trap) ---
+          window.addEventListener("keydown", (event) => {
+            if (this.modalOpen) {
+              switch (event.key) {
+                case "Escape":
+                  this.closeModal();
+                  break;
+                case "Tab":
+                  this.trapFocus(event);
+                  break;
+              }
+            }
           });
         }
+
+        /* -------------------------------------------------------------
+         * 🔐 Encryption / Decryption Logic
+         * ------------------------------------------------------------- */
 
         /** Encrypt the current input text and display output. */
         encrypt() {
@@ -572,6 +832,10 @@
           if (text.endsWith("]")) this.decrypt();
           else this.encrypt();
         }
+
+        /* -------------------------------------------------------------
+         * 📋 Clipboard Utilities
+         * ------------------------------------------------------------- */
 
         /** Copy current output to clipboard. */
         async copyOutput() {
@@ -593,9 +857,77 @@
             console.error("Clipboard paste failed:", err);
           }
         }
+
+        /* -------------------------------------------------------------
+         * 🧩 Accessibility-Friendly Modal Behavior
+         * ------------------------------------------------------------- */
+
+        /**
+         * Open the Help Modal with accessibility features.
+         * - Focus is trapped within the modal
+         * - Background content is visually and semantically hidden
+         * - Focus returns to the triggering element on close
+         */
+        openModal() {
+          this.lastFocusedElement = document.activeElement;
+          this.modal.style.display = "block";
+          this.modal.setAttribute("aria-hidden", "false");
+          this.modal.setAttribute("role", "dialog");
+          this.modal.setAttribute("aria-modal", "true");
+          this.infoButton.style.display = "none";
+          this.modalOpen = true;
+
+          // Set initial focus on close button for screen readers
+          this.closeBtn.focus();
+        }
+
+        /**
+         * Close the Help Modal and restore focus.
+         * - Returns focus to the last focused element before opening modal
+         * - Hides modal content from accessibility tree
+         */
+        closeModal() {
+          this.modal.style.display = "none";
+          this.modal.setAttribute("aria-hidden", "true");
+          this.infoButton.style.display = "block";
+          this.modalOpen = false;
+
+          if (this.lastFocusedElement) {
+            this.lastFocusedElement.focus();
+          }
+        }
+
+        /**
+         * Trap focus within the modal when open.
+         * Ensures accessibility compliance for keyboard navigation.
+         * @param {KeyboardEvent} event - The tab key event.
+         */
+        trapFocus(event) {
+          const focusableElements = this.modal.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+          );
+          const firstEl = focusableElements[0];
+          const lastEl = focusableElements[focusableElements.length - 1];
+
+          if (event.shiftKey) {
+            // Shift + Tab cycles backward
+            if (document.activeElement === firstEl) {
+              lastEl.focus();
+              event.preventDefault();
+            }
+          } else {
+            // Tab cycles forward
+            if (document.activeElement === lastEl) {
+              firstEl.focus();
+              event.preventDefault();
+            }
+          }
+        }
       }
 
-      // Initialize UI once DOM is ready
+      /* -------------------------------------------------------------
+       * 🚀 Initialize UI once DOM is ready
+       * ------------------------------------------------------------- */
       document.addEventListener("DOMContentLoaded", () => {
         window.enigmaApp = new EnigmaUI();
       });
